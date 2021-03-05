@@ -23,28 +23,33 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"chauncy.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chauncy&#39;s blog">
-<meta property="og:url" content="http://chauncy.github.io/index.html">
+<meta name="description" content="型别推导 本文为对Effective Modern C++ 第一章条款1的总结和概述  模板型别推导首先我们将模板表示为以下一般形式： 1234template&lt;typename T&gt;void f(ParamType param);f(expr); 我们可以知道模板类型T的推导结果由expr的类型和ParamType共同决定。 条款1对其进行了如下分类：  ParamType 为指针或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="型别推导">
+<meta property="og:url" content="http://chauncy.github.io/2021/03/05/%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/index.html">
 <meta property="og:site_name" content="Chauncy&#39;s blog">
+<meta property="og:description" content="型别推导 本文为对Effective Modern C++ 第一章条款1的总结和概述  模板型别推导首先我们将模板表示为以下一般形式： 1234template&lt;typename T&gt;void f(ParamType param);f(expr); 我们可以知道模板类型T的推导结果由expr的类型和ParamType共同决定。 条款1对其进行了如下分类：  ParamType 为指针或">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-05T15:25:14.000Z">
+<meta property="article:modified_time" content="2021-03-05T16:15:40.420Z">
 <meta property="article:author" content="Chauncy">
+<meta property="article:tag" content="C++ EffectiveModernC++">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://chauncy.github.io/">
+<link rel="canonical" href="http://chauncy.github.io/2021/03/05/%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
-<title>Chauncy's blog</title>
+<title>型别推导 | Chauncy's blog</title>
   
 
 
@@ -143,7 +148,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -156,6 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.</span> <span class="nav-text">型别推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.1.</span> <span class="nav-text">模板型别推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ParamType%E4%B8%BA%E6%8C%87%E9%92%88%E6%88%96%E5%BC%95%E7%94%A8%EF%BC%8C%E4%BD%86%E9%9D%9E%E4%B8%87%E8%83%BD%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">ParamType为指针或引用，但非万能引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ParamType%E4%B8%BA%E4%B8%87%E8%83%BD%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">ParamType为万能引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ParamType%E6%97%A2%E9%9D%9E%E6%8C%87%E9%92%88%E4%B9%9F%E9%9D%9E%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">ParamType既非指针也非引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%AE%9E%E5%8F%82"><span class="nav-number">1.1.4.</span> <span class="nav-text">数组实参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9E%E5%8F%82"><span class="nav-number">1.1.5.</span> <span class="nav-text">函数实参</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -212,16 +218,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/05/%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -234,9 +241,9 @@
       <meta itemprop="name" content="Chauncy's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/05/%E5%9E%8B%E5%88%AB%E6%8E%A8%E5%AF%BC/" class="post-title-link" itemprop="url">型别推导</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          型别推导
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -266,7 +273,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="型别推导"><a href="#型别推导" class="headerlink" title="型别推导"></a>型别推导</h1><blockquote>
+        <h1 id="型别推导"><a href="#型别推导" class="headerlink" title="型别推导"></a>型别推导</h1><blockquote>
 <p>本文为对Effective Modern C++ 第一章条款1的总结和概述</p>
 </blockquote>
 <h2 id="模板型别推导"><a href="#模板型别推导" class="headerlink" title="模板型别推导"></a>模板型别推导</h2><p>首先我们将模板表示为以下一般形式：</p>
@@ -406,7 +413,6 @@
 <p>与数组一样，在型别推导的过程中传递的函数也会退化为函数的指针，如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(T param)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(T&amp; param)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sumFunc</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">double</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">f1(someFunc); 	<span class="comment">// void (*)(int, double)</span></span><br><span class="line">f2(someFunc);   <span class="comment">// void (&amp;)(int, double)</span></span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -414,101 +420,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/C-EffectiveModernC/" rel="tag"># C++ EffectiveModernC++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/04/ST-GDN/" rel="prev" title="ST-GDN">
+                  <i class="fa fa-chevron-left"></i> ST-GDN
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/04/ST-GDN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Chauncy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chauncy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/04/ST-GDN/" class="post-title-link" itemprop="url">ST-GDN</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-04 14:34:02" itemprop="dateCreated datePublished" datetime="2021-03-04T14:34:02+08:00">2021-03-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-05 15:18:19" itemprop="dateModified" datetime="2021-03-05T15:18:19+08:00">2021-03-05</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ST-GDN"><a href="#ST-GDN" class="headerlink" title="ST-GDN"></a>ST-GDN</h1><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>传统上计算的是交通流量（volume，每个区域的流入和流出）。</p>
-<p>该篇文章在三个方面做出了改变：</p>
-<p>​    捕获的时间模式通常彼此互补，因此需要多分辨率的，即多个不同周期的交通数据采样来对数据进行建模来增强鲁棒性。</p>
-<p>​    递归神经网络在高阶多维时间范围内表现并不是很好（几乎不行）。</p>
-<p>​    地理属性相同的区域在交通模式上有着相似的表现，即使其并非临近。</p>
-<p>为解决上述问题，提出了ST-GDN（时空图扩散网络），着眼点在特定区域交通流。</p>
-<p>​    多尺度自注意力网络探究多细粒度时间动态性（不同采样频率的时间相关性），使用一个聚合层来对跨多级时间动态的基础依赖进行建模。</p>
-<p>​    使用图注意力扩散范式开发的层次图神经网络使ST-GDN能够以联合的方式将空间语义从局部级别的空间相邻关系合并到整个城市的全局级别的交通模式中。</p>
-<p><strong>定义1</strong> 空间区域， 栅格化建模</p>
-<p><strong>定义2</strong> 交通流张量， 区域流出量和区域流入量</p>
-<p><strong>任务</strong> 输入区域流出量和区域流入量，输出将来时段的交通流量。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="时间层次模型"><a href="#时间层次模型" class="headerlink" title="时间层次模型"></a>时间层次模型</h3><p>​    多尺度自注意力网络来连结映射多级时间信号，抓取模式。</p>
-<p>​    <strong>时间分辨率</strong> </p>
-<p>​    在对交通数据进行多分辨率采样后，使用一种自注意力网络来从时间维度对流量变化模式进行编码。编码器建立在具有三个（query, key, value）变换矩阵的可缩放点击注意力架构上。</p>
-<p>$<br>\left[<br>\begin{array}{l}<br>Q \ K \ V<br>\end{array}<br>\right]<br>=<br>E^p<br>\left[<br>\begin{array}{l}<br>W_Q \ W_K \ W_V<br>\end{array}<br>\right]<br>;<br>Y^p = \sigma(\frac {QK^T} {\sqrt{d}})<br>$</p>
-<h3 id="全局信息交通依赖学习"><a href="#全局信息交通依赖学习" class="headerlink" title="全局信息交通依赖学习"></a>全局信息交通依赖学习</h3><p>​    根据动态流量转换模式来利用不同区域之间的全局级别的依赖关系。</p>
-<p>​    全局图G=(R,E)。R区域集合，E两区域之间的关系。使用注意力机制的聚合表示方法如下：</p>
-<p>$<br>    m^p<em>{(i,j)\leftarrow(i’,j’)} = {||}</em>{h=1}^{H} w_{(i,j);(i’j’)}·Y^p·W^p<br>$</p>
-<p>等式右侧为特征信息沿箭头方向传播，此处赋予跨区域相关编码多头，来从不同的子区域中捕捉区域相关的语义，最后那个$W^p$矩阵为参数化投影矩阵。</p>
-<p>注意力相关性表示方法：<br>$<br>w^h<em>{(i,j);(i’,j’)} = \frac {exp(LR(\alpha^T[\hat{y}^p</em>{i,j}||\hat{y<em>{i’,j’}}]))} {\sum</em>{(i’,j’) \in \mathcal{N}}exp(LR(\alpha^T[\hat{y}^p<em>{i,j}||\hat{y}^p</em>{i’,j’}]))}<br>$<br>在y中使用关联运算。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
@@ -573,38 +503,7 @@
 
 
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'none'
-      },
-      options: {
-        renderActions: {
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+  
 
 
 </body>

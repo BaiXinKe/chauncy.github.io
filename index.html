@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"chauncy.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"chauncy.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chauncy&#39;s blog">
@@ -171,14 +171,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -218,6 +218,70 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/08/auto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Chauncy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chauncy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/08/auto/" class="post-title-link" itemprop="url">auto</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-03-08 10:12:00 / Modified: 11:11:22" itemprop="dateCreated datePublished" datetime="2021-03-08T10:12:00+08:00">2021-03-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -296,103 +360,6 @@
 <p>有如下例子：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">decltype</span>(<span class="keyword">auto</span>) <span class="title">f1</span><span class="params">()</span></span>&#123;	<span class="comment">// decltype(auto) -&gt; int</span></span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">decltype</span>(<span class="keyword">auto</span>) <span class="title">f1</span><span class="params">()</span></span>&#123;	<span class="comment">// decltype(auto) -&gt; int&amp;</span></span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> (x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>给x加上括号导致其返回了局部对象的引用会导致未定义行为。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/06/STFGNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Chauncy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chauncy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/06/STFGNN/" class="post-title-link" itemprop="url">STFGNN</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-03-06 13:10:12 / Modified: 16:13:37" itemprop="dateCreated datePublished" datetime="2021-03-06T13:10:12+08:00">2021-03-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Spatial-Temporal-Fusion-Graph-Neural-Networks-for-Traffic-Flow-Forecasting"><a href="#Spatial-Temporal-Fusion-Graph-Neural-Networks-for-Traffic-Flow-Forecasting" class="headerlink" title="Spatial-Temporal Fusion Graph Neural Networks for Traffic Flow Forecasting"></a>Spatial-Temporal Fusion Graph Neural Networks for Traffic Flow Forecasting</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>之前的方法采用的是使用单独的模块分别进行空间和时间相关性研究，或者使用相互之间独立的组件来捕获本地化或全局异质依赖关系。</p>
-<p>克服上述问题，提出STFGNN，通过一个新的时空间图混合操作来学习隐藏的时空依赖，并行处理不同的时间段。</p>
-<p>包含混合图模块和新的门控卷积模块，使得模型可以学习长距离时间依赖。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>当前图模型的缺陷：</p>
-<ol>
-<li>缺乏翔实的图结构，远距离的节点可能仍旧存在模式的相关性，相同类型的区域通常存在着近似的交通模式。现存模型大多数只是利用给定的图结构的空间邻接矩阵，而忽略了图的时间相似性。</li>
-<li>现存图邻接矩阵缺少对图的复杂时空依赖的表现力</li>
-<li>当前的研究没有很有效的捕获局部和全局信息依赖</li>
-<li>STSGCN提出了一种新的局部时空子图，但只考虑的局部数据，未考虑全局信息。</li>
-</ol>
-<p>STFGNN是一个新的基于CNN的网络框架，还受动态时间规整的启发提出一种由数据驱动的图的构建方法。</p>
-<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>算法一： 时间图生成</p>
-<p>输入： V中的N个时间序列|V| = N</p>
-<p>W由时间距离算法定义于算法二中</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>,<span class="number">2</span>,..., N <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> j = <span class="number">1</span>,<span class="number">2</span>,...,N fo</span><br><span class="line">        dist_ij = TDL(V_i, V_j);</span><br><span class="line">	end</span><br><span class="line">    <span class="function">Sort Smallest <span class="title">k</span><span class="params">(k&lt;=N)</span> element <span class="keyword">and</span> their index</span></span><br><span class="line"><span class="function">        j </span>= &#123;j_1, j_2,...,j_k&#125; s.t.</span><br><span class="line">        dist_i,j_1 &lt;= dist_i,j_2 &lt;= dist_i,j_k <span class="keyword">if</span> \hatj in j then</span><br><span class="line">        W_i,\hatj = W_\hatj,i = <span class="number">1</span>;</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> Weight Matrix W of Temporal Graph G</span><br></pre></td></tr></table></figure>
-<p>算法二： 时间距离计算（TDL）</p>
-<p>输入$X=(x_1,x_2,…,x_n) \in \mathbb{R}^{n\times d}, Y=(y_1,y_2,…,y_m)\in\mathbb{R}^{m\times d}$，搜索长度为T</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>,<span class="number">2</span>,...,n <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> j = max(<span class="number">0</span>,i-T),...,min(m,i+T+<span class="number">1</span>) <span class="keyword">do</span></span><br><span class="line">        M_i,j = |M_i - Y_j|</span><br><span class="line">        <span class="keyword">if</span> i = <span class="number">0</span>, j = <span class="number">0</span> then M_C(i,j) = M^<span class="number">2</span>_i,j;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> i = <span class="number">0</span> then M_C(i,j) = M^<span class="number">2</span>_i,j + M_i,j<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> j = <span class="number">0</span> then M_C(i,j) = M^<span class="number">2</span>_i,j + M_i<span class="number">-1</span>, j;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> j = i - T then</span><br><span class="line">            M_C(i,j) = M^<span class="number">2</span>_i,j + min(M_i<span class="number">-1</span>,j<span class="number">-1</span>, M_i<span class="number">-1</span>,j)</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> j = i + T then</span><br><span class="line">            M_C(i,j) = M^<span class="number">2</span>_i,j + min(M_i<span class="number">-1</span>,j<span class="number">-1</span>, M_i,j<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">            M_c(i,j) = M^<span class="number">2</span>_i,j + min(M_i<span class="number">-1</span>,j<span class="number">-1</span>,M_i,j<span class="number">-1</span>, M_i<span class="number">-1</span>,j);</span><br><span class="line">		end</span><br><span class="line">end</span><br><span class="line"><span class="keyword">return</span> dist(X,Y) = M_C(n,m)^(<span class="number">1</span>/<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="时间序列的相似性"><a href="#时间序列的相似性" class="headerlink" title="时间序列的相似性"></a>时间序列的相似性</h4><p>动态时间规整的算法描述如下，给定两个时间序列$X=(x<em>1,x_2,…,x_n) and Y=(y_1,y_2,…,y_m) $ 距离矩阵$M</em>{n\times m}$通过如下方法进行计算：$M_{i,j} = |x_i-y_j|$ , 成本矩阵$M_c$定义如下：</p>
-<p>$M<em>c(i,j) = M</em>{i,j} + min(M_c(i,j-1), M_c(i-1,j), M_c(i,j))$</p>
-<p>X和Y之间的最终距离为$dist(X,Y)=M_c(m,n)^{\frac 1 2}$ 用来表示两序列之间的相似性。</p>
-<h2 id="初步工作"><a href="#初步工作" class="headerlink" title="初步工作"></a>初步工作</h2><p>路网定义$\mathcal{G} = (V,E,A_{GS})$ </p>
-<p>图信号$X_{\mathcal{G}}^t \in \mathbb{R}^{N \times d} $表示在时间t时刻的图$\mathcal{G}$的属性特征，每个N个传感器，d个特征。</p>
-<h2 id="时空混合图神经网络"><a href="#时空混合图神经网络" class="headerlink" title="时空混合图神经网络"></a>时空混合图神经网络</h2><p>模型包含三个部分</p>
-<ol>
-<li>输入层</li>
-<li>堆叠的时空混合图神经层</li>
-<li>输出层</li>
-</ol>
-<p>输入和输出层分别为一层和两层全连接层加上激活函数。</p>
-<p>每个时空混合图层基于一些时空神经图模块并行构建（STFGN Modules），还包含有两个并行的1D膨胀卷积块的门控CNN模块。</p>
-<h3 id="时空混合图构建"><a href="#时空混合图构建" class="headerlink" title="时空混合图构建"></a>时空混合图构建</h3><p>目标：使深度学习模型轻量化</p>
-<p>该混合图包含每个节点之间的关联性信息，1.空间邻居，2. 具有相似模式的点，3.沿时间轴的前向或后向信息。</p>
 
       
     </div>
@@ -620,96 +587,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/04/ST-GDN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Chauncy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chauncy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/04/ST-GDN/" class="post-title-link" itemprop="url">ST-GDN</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-04 14:34:02" itemprop="dateCreated datePublished" datetime="2021-03-04T14:34:02+08:00">2021-03-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-05 15:18:19" itemprop="dateModified" datetime="2021-03-05T15:18:19+08:00">2021-03-05</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ST-GDN"><a href="#ST-GDN" class="headerlink" title="ST-GDN"></a>ST-GDN</h1><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>传统上计算的是交通流量（volume，每个区域的流入和流出）。</p>
-<p>该篇文章在三个方面做出了改变：</p>
-<p>​    捕获的时间模式通常彼此互补，因此需要多分辨率的，即多个不同周期的交通数据采样来对数据进行建模来增强鲁棒性。</p>
-<p>​    递归神经网络在高阶多维时间范围内表现并不是很好（几乎不行）。</p>
-<p>​    地理属性相同的区域在交通模式上有着相似的表现，即使其并非临近。</p>
-<p>为解决上述问题，提出了ST-GDN（时空图扩散网络），着眼点在特定区域交通流。</p>
-<p>​    多尺度自注意力网络探究多细粒度时间动态性（不同采样频率的时间相关性），使用一个聚合层来对跨多级时间动态的基础依赖进行建模。</p>
-<p>​    使用图注意力扩散范式开发的层次图神经网络使ST-GDN能够以联合的方式将空间语义从局部级别的空间相邻关系合并到整个城市的全局级别的交通模式中。</p>
-<p><strong>定义1</strong> 空间区域， 栅格化建模</p>
-<p><strong>定义2</strong> 交通流张量， 区域流出量和区域流入量</p>
-<p><strong>任务</strong> 输入区域流出量和区域流入量，输出将来时段的交通流量。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="时间层次模型"><a href="#时间层次模型" class="headerlink" title="时间层次模型"></a>时间层次模型</h3><p>​    多尺度自注意力网络来连结映射多级时间信号，抓取模式。</p>
-<p>​    <strong>时间分辨率</strong> </p>
-<p>​    在对交通数据进行多分辨率采样后，使用一种自注意力网络来从时间维度对流量变化模式进行编码。编码器建立在具有三个（query, key, value）变换矩阵的可缩放点击注意力架构上。</p>
-<p>$<br>\left[<br>\begin{array}{l}<br>Q \ K \ V<br>\end{array}<br>\right]<br>=<br>E^p<br>\left[<br>\begin{array}{l}<br>W_Q \ W_K \ W_V<br>\end{array}<br>\right]<br>;<br>Y^p = \sigma(\frac {QK^T} {\sqrt{d}})<br>$</p>
-<h3 id="全局信息交通依赖学习"><a href="#全局信息交通依赖学习" class="headerlink" title="全局信息交通依赖学习"></a>全局信息交通依赖学习</h3><p>​    根据动态流量转换模式来利用不同区域之间的全局级别的依赖关系。</p>
-<p>​    全局图G=(R,E)。R区域集合，E两区域之间的关系。使用注意力机制的聚合表示方法如下：</p>
-<p>$<br>    m^p<em>{(i,j)\leftarrow(i’,j’)} = {||}</em>{h=1}^{H} w_{(i,j);(i’j’)}·Y^p·W^p<br>$</p>
-<p>等式右侧为特征信息沿箭头方向传播，此处赋予跨区域相关编码多头，来从不同的子区域中捕捉区域相关的语义，最后那个$W^p$矩阵为参数化投影矩阵。</p>
-<p>注意力相关性表示方法：<br>$<br>w^h<em>{(i,j);(i’,j’)} = \frac {exp(LR(\alpha^T[\hat{y}^p</em>{i,j}||\hat{y<em>{i’,j’}}]))} {\sum</em>{(i’,j’) \in \mathcal{N}}exp(LR(\alpha^T[\hat{y}^p<em>{i,j}||\hat{y}^p</em>{i’,j’}]))}<br>$<br>在y中使用关联运算。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
 
 <script>
@@ -748,7 +625,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Chauncy</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
     </div>
@@ -770,38 +647,7 @@
 
 
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'none'
-      },
-      options: {
-        renderActions: {
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
+  
 
 
 </body>

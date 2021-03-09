@@ -258,7 +258,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-09 21:19:43" itemprop="dateModified" datetime="2021-03-09T21:19:43+08:00">2021-03-09</time>
+        <time title="Modified: 2021-03-09 21:38:52" itemprop="dateModified" datetime="2021-03-09T21:38:52+08:00">2021-03-09</time>
       </span>
 
   
@@ -287,15 +287,15 @@
 <p>使用auto也可使代码的可移植性增加。</p>
 <p>在某些情况下，程序员对于型别类型可能出现误判，考虑如下例子：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">pair</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="keyword">int</span>&gt;&amp; p : m)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，for_each循环使用了引用来接受每个unordered_map中的成员，可以认为是为了避免拷贝的发生，但此处出现了型别的错误。在std::unordered_map中key部分是const的所以真正的型别因改为const std::pair<const std::string, int>&amp; p。现在考虑当错误发生的时候会导致的后果，程序会尽力找到从const std::pair<const std::string,int> 向 const std::pair<std::string, int> 转型的动作，这个过程中会产生临时对象，绑定到引用之上，发生了意料之外的拷贝动作，导致效率的下降。而使用auto&amp;便不会出现该种情况。</p>
+<p>在上述代码中，for_each循环使用了引用来接受每个unordered_map中的成员，可以认为是为了避免拷贝的发生，但此处出现了型别的错误。在std::unordered_map中key部分是const的所以真正的型别因改为const std::pair&lt;const std::string, int&gt;&amp; p。现在考虑当错误发生的时候会导致的后果，程序会尽力找到从const std::pair &lt;const std::string,int&gt; 向 const std::pair&lt;std::string, int&gt; 转型的动作，这个过程中会产生临时对象，绑定到引用之上，发生了意料之外的拷贝动作，导致效率的下降。而使用auto&amp;便不会出现该种情况。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p : m)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上述代码中p的型别被正确推导。</p>
 <blockquote>
 <p>下述内容对应条款6: 当auto推导的型别不符合要求时,使用带显式型别的初始化物习惯用法</p>
 </blockquote>
-<p>当出现代理类的时候,auto推导型别出现了问题。比如大名鼎鼎的std::vector<bool>，其使用operator[]的返回值并非一个bool值而是一个称之为std::vector<bool>::reference的型别，其被声明在了std::vector<bool>中。问题出现在如下代码之中：</p>
+<p>当出现代理类的时候,auto推导型别出现了问题。比如大名鼎鼎的std::vector&lt;bool&gt;，其使用operator[]的返回值并非一个bool值而是一个称之为std::vector&lt;bool&gt;::reference的型别，其被声明在了std::vector&lt;bool&gt;中。问题出现在如下代码之中：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设我们有一个函数</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">features</span><span class="params">(<span class="keyword">const</span> Widget&amp; w)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以很明确的看出其返回一个std::vector&lt;bool&gt;, 此时考虑如下调用</span></span><br><span class="line"><span class="keyword">auto</span> highPriority = features(w)[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//此时highPriority为std::vector&lt;bool&gt;::reference对象</span></span><br></pre></td></tr></table></figure>
-<p>上述问题的关键在与，在某些实现中，std::vector<bool>::reference的实现为一个指针指向底层表示bool值的bit，但此时features返回值为一个临时对象，在语句结束后，就会析构，因此此时highPriority所保有的对象变成了一个空悬指针，再使用他就会产生未定义行为。</p>
+<p>上述问题的关键在与，在某些实现中，std::vector&lt;bool&gt;::reference的实现为一个指针指向底层表示bool值的bit，但此时features返回值为一个临时对象，在语句结束后，就会析构，因此此时highPriority所保有的对象变成了一个空悬指针，再使用他就会产生未定义行为。</p>
 <p>一个普遍的规律时隐形代理类和auto无法和平共处，因此要避免auto和隐形代理类一同使用。</p>
 <p>但在实际情况下，代理类很难去侦测到。此时的问题并不在于auto，而在与其没有推断出想要推导的类型，解决方法进行一次显式的型别转换，称之为<strong>带显式型别的初始化物习惯用法</strong>。上述代码中函数调用部分可改为：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> highPriority = <span class="keyword">static_cast</span>&lt;<span class="keyword">bool</span>&gt;(features(w)[<span class="number">5</span>]);</span><br></pre></td></tr></table></figure>
@@ -304,6 +304,8 @@
 <p>总结：</p>
 <p>使用auto的好处大概可分为两类，一类是减轻程序员的思想和身体负担，不用再去思考某些型别具体是什么，也不用在再某些型别上费时费力写上一长串的型别声明或加不加typename等。二则是减少了程序出错的可能性和增加了程序的可移植性，当平台发生改变时，某些型别如size_t的底层会发生改变此时若采用auto则可不必理会其中的变化。在程序一处的修改也会借由auto传播到程序中的所有地方，这一点和宏常量有着一些相似的地方。减少了程序员对型别的干预也避免了某些错误或导致性能下降的因素，如上例所示。</p>
 <p>但auto在配合代理类使用的情况下表现并不如人意，因此在使用代理类的情况下可借由带显式型别初始化习惯法来将结果指向期望的型别。</p>
+<p>扩展 </p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25148592">蓝色大佬的一篇关于auto和forloop使用的文章</a></p>
 
       
     </div>

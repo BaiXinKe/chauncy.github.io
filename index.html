@@ -171,9 +171,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -227,6 +233,113 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/10/%E8%BD%AC%E5%90%91%E7%8E%B0%E4%BB%A3Cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Chauncy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chauncy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/10/%E8%BD%AC%E5%90%91%E7%8E%B0%E4%BB%A3Cpp/" class="post-title-link" itemprop="url">转向现代Cpp</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-03-10 21:38:33 / Modified: 22:30:51" itemprop="dateCreated datePublished" datetime="2021-03-10T21:38:33+08:00">2021-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cpp/" itemprop="url" rel="index"><span itemprop="name">Cpp</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>现代C++，一般指的时C++11之后的版本，虽然说称作现代C++但距现在也已经有十年之久了，C++版本在这之后又经历了C++14，C++17以及C++20。新增的东西很多，比如协程，结构化绑定等都在之后加入了C++语法或标准库之中，此处仅以Meyers这本书上介绍的内容进行归纳，更多内容在学习完本书之后再进行补充。</p>
+<h2 id="在创建对象时注意区分（）和"><a href="#在创建对象时注意区分（）和" class="headerlink" title="在创建对象时注意区分（）和{}"></a>在创建对象时注意区分（）和{}</h2><p>在C++里区分初始化语义和赋值语义一直是一个绕不开的话题，如以下代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x&#123;<span class="number">0</span>&#125;; 	<span class="comment">// 初始化</span></span><br><span class="line"><span class="keyword">int</span> y = <span class="number">0</span>;	<span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">z</span><span class="params">(<span class="number">0</span>)</span></span>;	<span class="comment">// 初始化</span></span><br></pre></td></tr></table></figure>
+<p>如上所示，上述三者都是初始化而非赋值，我们此处所讲的也即关于初始化的问题。</p>
+<blockquote>
+<p> C++11引入了统一初始化：即单一、至少上从概念上可以用于一切场合，表达一切意思的初始化。其基础是大括号形式，因此也可以称之为<strong>大括号初始化</strong> </p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>&#125;; <span class="comment">// 创建一个vec,其中包含三个元素1，3，5</span></span><br></pre></td></tr></table></figure>
+<p>从下属两个个代码实例中，我们可以看出<strong>统一</strong>一词的含义</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x&#123;<span class="number">0</span>&#125;;	<span class="comment">//可行, x的默认值为0</span></span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">0</span>;	<span class="comment">// 可行，y的默认值为0</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">z</span><span class="params">(<span class="number">0</span>)</span></span>;	<span class="comment">// 不可行,Compile Error</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例2</span></span><br><span class="line"><span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; ail&#123;<span class="number">0</span>&#125;; <span class="comment">// 可行，默认值为0</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; <span class="title">ai2</span><span class="params">(<span class="number">0</span>)</span></span>; <span class="comment">// 可行</span></span><br><span class="line"><span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; ai3 = <span class="number">0</span>; <span class="comment">// 不可行</span></span><br></pre></td></tr></table></figure>
+<p>从上述例子中我们可以看出，只有{}可以在任意的初始化时被使用，而是用其他的方式均不是很通用。</p>
+<p>且大括号初始化会避免类型的隐式窄化操作，比如大括号用double类型字面值来初始化int类型变量，就会在编译期报错，而小括号和等号均无此限制。</p>
+<p>使用大括号可以很好的避免出现<strong>最令人苦恼的解析语法</strong>，考虑如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Widget <span class="title">w1</span><span class="params">(<span class="number">21</span>)</span></span>; <span class="comment">// 创建一个Widget对象，调用其接受一个参数的构造函数</span></span><br><span class="line"><span class="function">Widget <span class="title">w2</span><span class="params">()</span></span>; <span class="comment">// 声明了一个名为w2的函数，其返回值时Widget类型。</span></span><br></pre></td></tr></table></figure>
+<p>在上述情况下，我们可能想要创建一个对象但最终得到的结果却事与愿违。使用大括号初始化便可以避免此类错误。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Widget w2&#123;&#125;; <span class="comment">//没问题，创建了一个Widget类型的对象w2</span></span><br></pre></td></tr></table></figure>
+<p>但大括号初始化在某种情况下会出现令人迷惑的结果，其发生于与std::initalizer_list及构造函数连用的情况下，这种情况下就会出现重载决议方面的问题。</p>
+<p>考虑如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Widget(<span class="keyword">int</span> i, <span class="keyword">bool</span> b);</span><br><span class="line">    Widget(<span class="keyword">int</span> i, <span class="keyword">double</span> d);</span><br><span class="line">    Widget(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;<span class="keyword">long</span> <span class="keyword">double</span>&gt; il);</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Widget <span class="title">w1</span><span class="params">(<span class="number">10</span>, <span class="literal">true</span>)</span></span>; <span class="comment">// 调用第一个构造函数</span></span><br><span class="line">Widget w2&#123;<span class="number">10</span>, <span class="literal">true</span>&#125;; <span class="comment">//使用大括号，调用std::initializer_list构造函数,10和true被转化为long double</span></span><br><span class="line"><span class="function">Widget <span class="title">w3</span><span class="params">(<span class="number">10</span>, <span class="number">5.0</span>)</span></span>; <span class="comment">// 调用第二个构造函数</span></span><br><span class="line">Widget w2&#123;<span class="number">10</span>, <span class="number">5.0</span>&#125;; <span class="comment">//使用大括号，调用std::initializer_list构造函数,10和5.0被转化为long double</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，在使用大括号进行初始化，并且含有std::initializer_list构造函数时，其重载决议始终指向了std::initializer_list构造函数。赋值构造函数和移动构造函数在类中存在向某一类型转换的情况下也会被该构造函数劫持导致无法重载到正确的构造函数。并且即使重载函数中存在最优匹配大括号初始化也会将其忽视，并定位到std::initializer_list构造函数，考虑前面介绍的，在大括号初始化时如果出现类型隐式类型窄化的情况就会发生编译错误导致代码无法通过编译。只有在找不到任何方法可以把大括号中的类型转化为std::initialzer_list模板中的类型时，才会退回去使用普通的重载决议，比如std::initializer_list构造函数的模板类型为string而大括号中为{int，bool}这种情况。</p>
+<p>最后在使用空大括号进行初始化的情况下会使用默认构造函数而非std::initializer_list构造函数，这是语言规定所致。</p>
+<p>从上述讨论中得到了两个主要的结论：</p>
+<blockquote>
+<p>首先如果是一个类的作者，你需要有清醒的意识。了解自己撰写的一组重载构造函数中只有一个或多个声明了任何一个具备std::initializer_list型别的形参，则使用了大括号初始化的客户代码可能只会发现那些std::initializer_list型别的重载版本。</p>
+<p>如果你是一个开发类客户代码的程序员，在创建对象时选用一对小括号还是大括号要三思而后行。</p>
+</blockquote>
+<p>但作为模板开发程序员，使用大括号还是小括号是一件头疼的事情，考虑以下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ...Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomeWork</span><span class="params">(Ts&amp;&amp;... params)</span></span>&#123;</span><br><span class="line">    <span class="comment">//利用params创建局部对象T</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>doSomeWork函数中创建局部T类型对象的情况有两种：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T localObject&#123;<span class="built_in">std</span>::forward&lt;Ts&gt;(params)...&#125;;</span><br><span class="line"><span class="function">T <span class="title">localObject</span><span class="params">(<span class="built_in">std</span>::forward&lt;Ts&gt;(params)...)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>上述代码中分别使用大括号和小括号对localObject进行了初始化，但当传递如下代码时会产生不同的效果：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">doSomeWork&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(<span class="number">10</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<p>如果使用大括号，则创建对象中包含两个元素{10， 20}，而使用小括号则会创建拥有十个元素为20的对象。</p>
+<p>所以在该类情况下最好使用文档来告知使用者模板中的括号选择问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://chauncy.github.io/2021/03/08/auto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -258,8 +371,17 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-09 21:38:52" itemprop="dateModified" datetime="2021-03-09T21:38:52+08:00">2021-03-09</time>
+        <time title="Modified: 2021-03-10 21:45:00" itemprop="dateModified" datetime="2021-03-10T21:45:00+08:00">2021-03-10</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cpp/" itemprop="url" rel="index"><span itemprop="name">Cpp</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -363,8 +485,17 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-07 10:34:08" itemprop="dateModified" datetime="2021-03-07T10:34:08+08:00">2021-03-07</time>
+        <time title="Modified: 2021-03-10 21:45:07" itemprop="dateModified" datetime="2021-03-10T21:45:07+08:00">2021-03-10</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cpp/" itemprop="url" rel="index"><span itemprop="name">Cpp</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -458,8 +589,17 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-06 00:18:21" itemprop="dateModified" datetime="2021-03-06T00:18:21+08:00">2021-03-06</time>
+        <time title="Modified: 2021-03-10 21:45:05" itemprop="dateModified" datetime="2021-03-10T21:45:05+08:00">2021-03-10</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cpp/" itemprop="url" rel="index"><span itemprop="name">Cpp</span></a>
+        </span>
+    </span>
 
   
 </div>
